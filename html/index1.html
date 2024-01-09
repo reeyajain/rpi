@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Read Data form file</title>
+</head>
+<body>
+	<input type="file" id = "fileInput">
+	<br>
+	<pre id ="output"></pre>
+	<script>
+	const fileInput = document.getElementById('fileInput');
+	const output = document.getElementById('output');
+	fileInput.addEventListner('change',(event)=>{
+		const file = event.target.files[0];
+		const reader = new FileReader();
+		reader.onload=(event)=>{
+			const textData = event.target.result;
+			output.textContent = textData;
+		};
+		reader.readAsText(file);
+	});
+	</script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+First of all I have written a module named hello.c and used init and exit functions. In init and exit function I have written "Hello World" and "Good Bye" message respectively using printk which goes to the log buffer after successfully loading and unloading the module (hello.ko file). Later I verified the message using the dmesg command. Final snapshot is is attached in this folder only.
+
