@@ -11,9 +11,9 @@ def index3():
 # Convert the plot to base64 for embedding in HTML
 # Render the HTML template with the embedded plot
 	return render_template('index3.html')
-#@app.route('/data.txt')
-#def data():
-#	return send_from_directory('~/Desktop/html/static','data.txt')
+@app.route('/data.txt')
+def data():
+	return render_template('index4.html')
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=5002,debug=True)

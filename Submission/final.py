@@ -16,5 +16,27 @@ y_val = y_values[-10:]
 z_val = z_values[-10:]
 q_val = q_values[-10:]
 
+app = dash.Dash()
+
+app.layout = html.Div(children =[
+	html.H1("Dash Tutorial"),
+	dcc.Graph(
+		id ="example",
+		figure ={
+			'data':[
+					{'x':x_val,
+						'y':y_val,
+						'type':'line',
+						'name':'CPU'},
+				],
+			'layout':{
+				'title':'Basic Dashboard'
+			}
+		}
+	)
+])
+
+if __name__ == '__main__':
+	    app.run(host='0.0.0.0', port=5000)
 
 

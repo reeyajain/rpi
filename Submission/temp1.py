@@ -6,13 +6,13 @@ import plotly
 import random
 import plotly.graph_objs as go
 from collections import deque
-
+'''
 x_val = deque(maxlen = 20)
 x_val.append(1)
 
 z_val = deque(maxlen = 20)
 z_val.append(1)
-
+'''
 app = dash.Dash(__name__)
 
 app.layout = html.Div(
@@ -20,8 +20,8 @@ app.layout = html.Div(
 		dcc.Graph(id = 'live-graph', animate = True),
 		dcc.Interval(
 			id = 'graph-update',
-			interval = 1,
-			n_intervals = 0
+			interval = 5000,
+			n_intervals = 1
 
 		),
 	]
@@ -50,14 +50,14 @@ def update_graph_scatter(n):
 #	Y.append(Y[-1]+Y[-1] * random.uniform(-0.1,0.1))
 
 	data = plotly.graph_objs.Scatter(
-			x=list(x_val),
-			y=list(z_val),
-			name='Scatter',
-			#mode= 'lines+markers'
+			x=x_val,
+			y=z_val,
+			name='Memory',
+			mode= 'lines+markers'
 	)
 
 	return {'data': [data],
-			'layout' : go.Layout(xaxis=dict(range=[min(x_values),max(x_values)]),yaxis = dict(range = [min(z_values),max(z_values)]),)}
+			'layout' : go.Layout(xaxis=dict(range=[min(x_val),max(x_val)]),yaxis = dict(range = [min(z_val),max(z_val)]),)}
 
 if __name__ == '__main__':
-	app.run_server()
+	app.run(host='0.0.0.0',port=5005)

@@ -75,6 +75,6 @@ int main() {
 	for(int i=0; i<10000;i++) {
 		fprintf(file,"%s\t%f\t%f\t%f\n",timeInstance(),cpu(),mem(),tempCelcius());
 		fflush(file);
-		sleep(1);
+		sleep(2);
 	}
 }
