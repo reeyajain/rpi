@@ -16,7 +16,7 @@ app.layout = html.Div(
 		dcc.Graph(id = 'graph3', animate = True),
 		dcc.Interval(
 			id = 'graph-update',
-			interval = 1000,
+			interval = 2000,
 			n_intervals = 1
 
 		),
@@ -50,7 +50,7 @@ def update_graph_scatter(n):
 	fig1 = go.Figure(data=[data1], layout=layout1)
 
 	data2 = go.Scatter(x=x_val, y=z_val, mode='lines+markers', name='Memory')
-	layout2 = go.Layout(height=600,width=1200,title='Time-Memory',xaxis=dict(range=[min(x_values),max(x_values)]),yaxis = dict(range = [min(z_values),max(z_values)]))
+	layout2 = go.Layout(height=600,width=1200,title='Time-Memory',xaxis=dict(range=[min(x_values),max(x_values)]),yaxis = dict(range = [0,100]))
 	fig2 = go.Figure(data=[data2], layout=layout2)
 
 	data3 = go.Scatter(x=x_val, y=q_val, mode='lines+markers', name='Temperature')

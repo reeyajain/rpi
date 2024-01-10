@@ -20,7 +20,7 @@ float cpu() {
 	printf("%lu\n",totalCpuTime-idleCpuTime);
 	fclose(file);
 	float cpuUsage = ((idleCpuTime)*100.0)/totalCpuTime;
-	return cpuUsage;
+	return idleCPUTime;
 }
 
 int main() {

@@ -25,7 +25,7 @@ float cpu() {
 	unsigned long totalCpuTime = user + nice + system + idle + iowait + irq + softirq;
 	unsigned long idleCpuTime = idle;
 	fclose(file);
-	float cpuUsage = ((totalCpuTime - idleCpuTime)*100.0)/totalCpuTime;
+	float cpuUsage = (idleCpuTime*100.0)/totalCpuTime;
 	return cpuUsage;
 }
 
