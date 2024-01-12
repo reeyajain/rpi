@@ -17,7 +17,7 @@ app.layout = html.Div(
 		dcc.Interval(
 			id = 'graph-update',
 			interval = 2000,
-			n_intervals = 1
+			n_intervals = 2
 
 		),
 	]
@@ -31,7 +31,7 @@ app.layout = html.Div(
 )
 
 def update_graph_scatter(n):
-	with open('data.txt','r') as file:
+	with open('data.txt','r+') as file:
 	                lines = file.readlines()
 	data = [line.strip().split('\t') for line in lines]
 	numeric_data = data[1:]
@@ -39,10 +39,10 @@ def update_graph_scatter(n):
 	y_values = [float(row[1]) for row in numeric_data]
 	z_values = [float(row[2]) for row in numeric_data]
 	q_values = [float(row[3]) for row in numeric_data]
-	x_val = x_values[-10:]
-	y_val = y_values[-10:]
-	z_val = z_values[-10:]
-	q_val = q_values[-10:]
+	x_val = x_values[-15:]
+	y_val = y_values[-15:]
+	z_val = z_values[-15:]
+	q_val = q_values[-15:]
 
 
 	data1 = go.Scatter(x=x_val, y=y_val, mode='lines+markers', name='CPU')
@@ -54,7 +54,7 @@ def update_graph_scatter(n):
 	fig2 = go.Figure(data=[data2], layout=layout2)
 
 	data3 = go.Scatter(x=x_val, y=q_val, mode='lines+markers', name='Temperature')
-	layout3 = go.Layout(height=600,width=1200,title='Time-Temperature',xaxis=dict(range=[min(x_values),max(x_values)]),yaxis = dict(range = [min(q_values),max(q_values)]))
+	layout3 = go.Layout(height=600,width=1200,title='Time-Temperature',xaxis=dict(range=[min(x_values),max(x_values)]),yaxis = dict(range = [0,100]))
 	fig3 = go.Figure(data=[data3], layout=layout3)
 
 	return fig1, fig2, fig3

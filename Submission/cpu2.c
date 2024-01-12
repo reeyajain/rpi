@@ -1,24 +1,38 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
+#define MAX_BUFF 256
+
+double getCPUIdle() {
+    FILE* pipe = popen("mpstat 1 1 | grep '^Average' | awk '{print $NF}'", "r");
+    if (!pipe) {
+        perror("Error opening pipe");
+        return -1.0;
+    }
+
+    char buffer[MAX_BUFF];
+    if (!fgets(buffer, sizeof(buffer), pipe)) {
+        perror("Error reading pipe");
+        pclose(pipe);
+        return -1.0;
+    }
+
+    pclose(pipe);
+
+    double idleTime = atof(buffer);
+    double cpuTime = 100-idleTime;
+    return cpuTime;
+}
 
 int main() {
-    FILE *fp;
-    float cpu_usage;
-
-    fp = popen("mpstat 1 1 | grep '^%idle' | awk '{print $2}'", "r");
-    if (fp == NULL) {
-        perror("popen error");
-        return 1;
+while(1){
+    double idle = getCPUIdle();
+    if (idle < 0.0) {
+        printf("Failed to retrieve CPU idle time.\n");
+    } else {
+        printf("CPU Time: %.2f%%\n", idle);
     }
-
-    if (fscanf(fp, "%f", &cpu_usage) != 1) {
-        perror("fscanf error");
-        return 1;
-    }
-
-    printf("CPU usage: %.2f%%\n", cpu_usage);
-
-    pclose(fp);
-
+}
     return 0;
 }

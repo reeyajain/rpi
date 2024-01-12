@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> RPi Health Monitor </title>
+		<h1><b>Raspberry Pi Health Monitoring System</b></h1>
+	</head>
+
+	<body background="rpi.jpg">
+		<div class="btn-group">
+		<a class="block" href="/cpu">CPU Usage</a>
+		<a class="block" href="/mem">Memory Usage</a>
+		<a class="block" href="/temp">Temperature</a>
+		</div>
+	<style>
+	h1 {text-align: center;}
+	div {text-align: center;}
+		.block{
+			display:inline-block;
+			background-color:#04AA6D;
+			color:white;
+			padding:10px 24px;
+			text-decoration: none;
+			border: 1px solid green;
+
+			}
+		.block:hover{
+			background-color:#3e8e41;
+			}
+
+		body{
+			background-image:url("rpi.jpg");
+			background-size:cover;
+		}
+	</style>
+
+</html>
