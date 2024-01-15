@@ -14,10 +14,6 @@
     
     <canvas id="chart" width="600" height="300"></canvas>
     <script>
-        const xlabels = [];
-        const y1labels = [];
-        const y2labels = [];
-        const y3labels = [];
         
        // <block:setup:1>
         chartIt();
@@ -36,21 +32,6 @@
                 borderWidth: 1
         }]
     },
-    // options: {
-    //   scales: {
-    //     y2labels: {
-    //       beginAtZero: true,
-    //       ticks:{
-    //         callback:function(value,index,values){
-    //             return value + "mb";
-    //         }
-
-    //       }
-    //     }
-    //   }
-    // }
-    
-  
 });
         }
           
@@ -67,22 +48,12 @@
             const table = data.split('\n').slice(1);
             table.forEach(row=>{
                 const columns = row.split('\t')
-                //console.log(row);
                 const time = columns[0];
-                xlabels.push(time);
                 xs.push(time);
-                const cpu = columns[1];
-                y1labels.push(cpu);
-                //ys.push(cpu);
                 const mem = columns[2];
-                y2labels.push(mem);
                 ys.push(mem);
-                const temp = columns [3];
-                y3labels.push(temp);
-                //ys.push(temp);
-                console.log(time,cpu,mem,temp);
+                console.log(time,mem);
             });
-            //console.log(row);
             return {xs,ys};
         }
     </script>
